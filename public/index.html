@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Project</title>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/filters.js"></script>
+
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/lato.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="searchSection">
+        <input type="text" id="searchBox" class="lato-regular" placeholder="Search Anime">
+        <button onclick="searchAnime()" class="searchBtn lato-regular">Search</button>
+        <button onclick="filterAnime()" class="filterBtn lato-regular">Filter</button>
+        <div id="searchResults"></div>
+    </div>
+
+    <div id="filterScreen"></div>
+
+    <button id="navBtn" class="lato-regular" onclick="sidebar()">Sidebar</button>
+    <div id="nav">
+        <button>Login</button>
+        <button>Sign Up</button>
+        <button>Watchlist</button>
+    </div>
+</body>
+</html>

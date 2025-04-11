@@ -21,7 +21,7 @@ button {
     cursor: pointer;
     opacity: 0.8;
     transition: 0.25s;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 13px;
 }
 
@@ -42,7 +42,7 @@ button {
     padding: 12px;
     font-size: 25px;
     outline: None;
-    border-radius: 10px;
+    border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
@@ -67,7 +67,7 @@ button {
     left: 50%;
     transform: translateX(-50%);
     height: 20vh;
-    width: 20vw;
+    width: 28vw;
     background-color: #111;
     overflow-y: auto;
     overflow-x: hidden;
@@ -79,6 +79,7 @@ button {
 #filterScreen button {
     border: 2px solid rgb(199, 69, 69);
     margin: 2%;
+    padding: 5px;
     font-size: 10px;
 }
 
@@ -113,20 +114,20 @@ button {
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
-    left: 0%;
+    left: -10vw;
     background-color: #111; /* Black */
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 20px;
     transition: 0.5s;
 }
 
-#navBtn {
-    position: absolute;
-    top: 5%;
-    left: 2vh;
+#nav:hover {
+    left: 0%;
 }
 
 #nav button {
+    background-color: #171616;
+    border-radius: 5px;
     margin-left: 14%;
     margin-right: 12%;
     margin-top: 5%;
@@ -155,17 +156,18 @@ button {
     position: absolute; /* Now positions relative to .container */
     top: 0;
     right: 0;
-    border-radius: 5px;
+    border-radius: 0px;
     background-color: coral;
     border: none;
 }
 
 #animeCard {
-    height: 30vh;
-    width: 10vw;
+    height: 32vh;
+    width: 18vw;
     margin: 5%;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    max-width: 300px;
 }
 
 #animeDesc {
@@ -190,6 +192,7 @@ button {
 }
 
 .animeCover {
+    image-rendering: auto;
     height: 90%;
     width: 100%;
     opacity: 0.8;
@@ -217,4 +220,13 @@ button {
 
 .animeItem:hover .animeTitle {
     color: rgb(200, 110, 110);
+}
+
+#addBtn {
+    position: absolute; 
+    top: 1%;
+    right: 10%;
+    border-radius: 5px;
+    background-color: rgb(29, 26, 25);
+    border: 2px solid white;
 }

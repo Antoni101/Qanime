@@ -11,7 +11,7 @@ function searchAnime() {
 async function fetchAnime(query) {
     const res = await fetch(`https://api.jikan.moe/v4/anime?q=${query}`);
     const data = await res.json();
-    //console.log(data.data); // it's in .data array
+    //cconsole.log(data.data); // it's in .data array
 
     let animeResults = [];
     for (let i=0; i<data.data.length; i++) {
@@ -28,6 +28,7 @@ async function fetchAnime(query) {
             data.data[i].rating,
             data.data[i].rank,
             data.data[i].popularity,
+            data.data[i].mal_id
         );
         animeResults.push(animeObject);
     }
@@ -104,6 +105,9 @@ function showResults(results) {
                 document.getElementById("searchResults").style.filter = "blur(4px)";
                 document.getElementById("animeCard").src = results[i].coverB;
                 document.getElementById("animeDesc").innerHTML = results[i].desc;
+                document.getElementById("addBtn").onclick = function() {
+                    newAnime(results[i].id)
+                }
             }
 
             counter += 100;
@@ -124,7 +128,7 @@ function showResults(results) {
 }
 
 class animeItem {
-    constructor(title, score, episodes, year, genres, cover, coverB, desc, type, rating, rank, popularity) {
+    constructor(title, score, episodes, year, genres, cover, coverB, desc, type, rating, rank, popularity, id) {
         this.title = title;
         this.score = score;
         this.episodes = episodes;
@@ -137,6 +141,7 @@ class animeItem {
         this.rating = rating;
         this.rank = rank;
         this.popularity = popularity;
+        this.id = id;
 
         this.fixGenre(genres);
     }
@@ -147,4 +152,3 @@ class animeItem {
         }
     }
 }
-  

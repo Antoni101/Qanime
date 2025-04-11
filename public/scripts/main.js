@@ -1,18 +1,4 @@
 
-let nav = false;
-function sidebar() {
-    if (nav == false) {
-        document.getElementById("nav").style.left = "0%";
-        document.getElementById("navBtn").style.left = "22vh";
-        nav = true;
-    }
-    else {
-        document.getElementById("nav").style.left = "-100%";
-        document.getElementById("navBtn").style.left = "2vh";
-        nav = false;
-    }
-}
-
 function searchAnime() {
     let searchTitle = document.getElementById("searchBox").value;
     if (searchTitle != "") {

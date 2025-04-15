@@ -12,6 +12,10 @@ class myAnime {
     }
 }
 
+function openWatchlist() {
+    document.querySelector(".watchList").style.display = "Flex";
+}
+
 function newAnime(id) {
     if (watchlist.includes(id)) {
         console.log("Anime already in watchlist.")

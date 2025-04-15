@@ -10,6 +10,7 @@
 
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="styles/lato.css">
+    <link rel="stylesheet" href="styles/wl.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,14 +30,18 @@
     <div id="nav">
         <button>Login</button>
         <button>Sign Up</button>
-        <button>Watchlist</button>
+        <button onclick="openWatchlist()">Watchlist</button>
     </div>
 
-    <div id="animeDetails">
-        <button onclick="exitDetails()" class="exitDetails"></button>
+    <div class="animeDetails">
+        <button onclick="closeWindow('.animeDetails')" class="xBtn"></button>
         <img id="animeCard" src="">
         <p id="animeDesc" class="lato-light"></p>
         <button id="addBtn">Add to Watchlist</button>
+    </div>
+
+    <div class="watchList">
+        <button onclick="closeWindow('.watchList')" class="xBtn"></button>
     </div>
 </body>
 </html>

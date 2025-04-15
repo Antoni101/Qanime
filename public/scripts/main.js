@@ -1,4 +1,13 @@
 
+
+
+function closeWindow(windowName) {
+    document.querySelector(windowName).style.display = "None";
+    document.getElementById("searchResults").style.filter = "None";
+}
+
+
+
 function searchAnime() {
     let searchTitle = document.getElementById("searchBox").value;
     if (searchTitle != "") {
@@ -46,84 +55,66 @@ async function fetchAnime(query) {
     }
 }
 
-function exitDetails() {
-    let details = document.getElementById("animeDetails");
-    details.style.display = "None";
-    document.getElementById("searchResults").style.filter = "None";
+
+function animeInfo(thisAnime) {
+    const animeDetails = document.querySelector('.animeDetails')
+    animeDetails.style.display = "Block";
+
+    document.getElementById("searchResults").style.filter = "blur(4px)";
+    document.getElementById("animeCard").src = thisAnime.coverB;
+    document.getElementById("animeDesc").innerHTML = thisAnime.desc;
+    document.getElementById("addBtn").onclick = () => newAnime(thisAnime.id)
+
 }
 
-let nsfwFilter = true;
 function showResults(results) {
     let resultsArea = document.getElementById("searchResults");
     resultsArea.innerHTML = "";
     let counter = 100;
     for (let i=0; i<results.length; i++) {
-        if (results[i].rating == "Rx - Hentai" && nsfwFilter == true) {
-            console.log("Anime skipped due to rating: ",results[i].title);
-        }
-        else {
-            let animeItem = document.createElement("div");
-            animeItem.classList.add("animeItem");
+        let animeItem = document.createElement("div");
+        animeItem.classList.add("animeItem");
 
-            let cover = document.createElement("img");
+        let cover = document.createElement("img");
+        cover.classList.add("animeCover");
+        cover.src = results[i].cover;
 
-            cover.classList.add("animeCover");
-            cover.src = results[i].cover;
-            cover.style.opacity = 0.0
-            cover.style.transition = "2s"
+        let title = document.createElement("h1");
+        title.classList.add("animeTitle");
+        title.classList.add("lato-bold");
+        title.innerHTML = results[i].title;
 
-            let title = document.createElement("h1");
-            title.classList.add("animeTitle");
-            title.classList.add("lato-bold");
-            title.style.opacity = 0.0
-            title.style.transition = "2s"
-            title.innerHTML = results[i].title;
+        animeCheck(title, results[i])
 
-            if (results[i].popularity <= 150) {
-                title.innerHTML += "<br><span style='color: yellow;'>Popular</span>";
-            }
+        animeItem.appendChild(cover);
+        animeItem.appendChild(title);
+        animeItem.onclick = () => animeInfo(results[i]); 
+        resultsArea.appendChild(animeItem);
+    }
+}
 
-            if (results[i].episodes > 1) {
-                title.innerHTML += "<br><span style='color: cyan; font-size: 13px;'>TV - Episodes: "+results[i].episodes + "</span>"
-            }
-            else if (results[i].episodes <= 1 && results[i].type == "Movie") {
-                title.innerHTML += "<br><span style='color: red; font-size: 13px;'>Movie</span>"
-            }
-            else {
-                title.innerHTML += "<br><span style='color: pink; font-size: 12px;'>Other/Special</span>"
-            }
-           
-            if (results[i].rating == "R+ - Mild Nudity" || results[i].rating == "Rx - Hentai") {
-                cover.style.filter = "blur(0.4rem)"
-            }
-            animeItem.appendChild(cover);
-            animeItem.appendChild(title);
 
-            animeItem.onclick = function() {
-                let details = document.getElementById("animeDetails");
-                details.style.display = "Block";
-                document.getElementById("searchResults").style.filter = "blur(4px)";
-                document.getElementById("animeCard").src = results[i].coverB;
-                document.getElementById("animeDesc").innerHTML = results[i].desc;
-                document.getElementById("addBtn").onclick = function() {
-                    newAnime(results[i].id)
-                }
-            }
+let nsfwFilter = true;
+function animeCheck(title, thisAnime) {
+    if (thisAnime.rating == "Rx - Hentai" && nsfwFilter == true) {
+        console.log("Anime skipped due to rating: ",thisAnime.title);
+    }
+    if (thisAnime.popularity <= 150) {
+        title.innerHTML += "<br><span style='color: yellow;'>Popular</span>";
+    }
 
-            counter += 100;
-            setTimeout(function() {
-                resultsArea.appendChild(animeItem);
-                setTimeout(function() {
-                    cover.style.opacity = "1.0"
-                    title.style.opacity = "1.0"
-                    setTimeout(function() {
-                        cover.style.transition = "0.2s"
-                        title.style.transition = "0.2s"
-                    },1000)
-                },100)
-            },counter)
+    if (thisAnime.episodes > 1) {
+        title.innerHTML += "<br><span style='color: cyan; font-size: 13px;'>TV - Episodes: "+results[i].episodes + "</span>"
+    }
+    else if (thisAnime.episodes <= 1 && thisAnime.type == "Movie") {
+        title.innerHTML += "<br><span style='color: red; font-size: 13px;'>Movie</span>"
+    }
+    else {
+        title.innerHTML += "<br><span style='color: pink; font-size: 12px;'>Other/Special</span>"
+    }
 
-        }
+    if (thisAnime.rating == "R+ - Mild Nudity" || thisAnime.rating == "Rx - Hentai") {
+        cover.style.filter = "blur(0.4rem)"
     }
 }
 

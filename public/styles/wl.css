@@ -1,0 +1,11 @@
+.watchList {
+    display: None;
+    position: absolute;
+    width: 50vh;
+    height: 50vh;
+    background-color: rgb(42, 38, 38);
+    border-radius: 5px;
+    left: 35%;
+    top: 30%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}

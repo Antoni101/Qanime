@@ -16,12 +16,11 @@ function openWatchlist() {
     document.querySelector(".watchList").style.display = "Flex";
 }
 
-function newAnime(id) {
-    if (watchlist.includes(id)) {
-        console.log("Anime already in watchlist.")
-    }
-    else {
-        watchlist.push(id);
-        console.log(watchlist);
-    }
+function removeAnime(id) {
+    let animeIndex = watchlist.indexOf(id);
+    watchlist.splice(animeIndex, 1);
+}
+
+function addAnime(id) {
+    watchlist.push(id);
 }

@@ -63,21 +63,31 @@ function animeInfo(thisAnime) {
     document.getElementById("searchResults").style.filter = "blur(4px)";
     document.getElementById("animeCard").src = thisAnime.coverB;
     document.getElementById("animeDesc").innerHTML = thisAnime.desc;
-    if (watchlist.includes(thisAnime.id)) {
+
+    if (checkId(thisAnime.id) == true) {
         document.getElementById("addBtn").innerHTML = "Remove from Watchlist";
         document.getElementById("addBtn").onclick = () => {
             removeAnime(thisAnime.id);
-            document.getElementById("addBtn").innerHTML = "Add to Watchlist";
+            animeInfo(thisAnime);
         }
     }
     else {
         document.getElementById("addBtn").innerHTML = "Add to Watchlist";
         document.getElementById("addBtn").onclick = () => {
-            addAnime(thisAnime.id);
-            document.getElementById("addBtn").innerHTML = "Remove from Watchlist";
+            addAnime(thisAnime);
+            animeInfo(thisAnime);
+        }
+    } 
+
+}
+
+function checkId(id) {
+    for (let i=0; i<watchlist.length; i++) {
+        if (watchlist[i].info.id == id) {
+            return true;
         }
     }
-
+    return false;
 }
 
 function showResults(results) {
@@ -101,7 +111,7 @@ function showResults(results) {
             title.classList.add("lato-bold");
             title.innerHTML = results[i].title;
 
-            animeCheck(title, results[i])
+            animeCheck(title, cover, results[i])
 
             animeItem.appendChild(cover);
             animeItem.appendChild(title);
@@ -114,7 +124,7 @@ function showResults(results) {
 
 
 let nsfwFilter = true;
-function animeCheck(title, thisAnime) {
+function animeCheck(title, cover, thisAnime) {
     if (thisAnime.popularity <= 150) {
         title.innerHTML += "<br><span style='color: yellow;'>Popular</span>";
     }

@@ -1,11 +1,49 @@
 .watchList {
+    scrollbar-color: white rgb(18, 17, 17);
+    scrollbar-width:thin;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border: 3px solid purple;
     display: None;
     position: absolute;
     width: 50vh;
     height: 50vh;
     background-color: rgb(42, 38, 38);
     border-radius: 5px;
-    left: 35%;
+    left: 15%;
     top: 30%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.animeSection {
+    margin: 10%;
+    width: 80%;
+    height: 20%;
+    background-color: rgb(33, 31, 31, 0.7);
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    image-rendering: auto;
+}
+
+.animeSection:hover {
+    transform: scale(1.02);
+    opacity: 1.0;
+}
+
+.animeSection:active {
+    transform: scale(0.9);
+}
+
+.aTitle {
+    float: right;
+    font-size: 30px; 
+    color: white;
+    margin: 1%;
+    background-color: rgb(33, 31, 31, 0.7);
+
 }

@@ -134,10 +134,10 @@ button {
     display: None;
     scrollbar-color: white rgb(18, 17, 17);
     scrollbar-width:thin;
-    border: 3px solid white;
+    border: 3px solid rgb(199, 91, 91);
     overflow: auto;
     position: absolute;
-    left: 30%;
+    left: 50%;
     top: 30%;
     width: 50vw;
     height: 50vh;

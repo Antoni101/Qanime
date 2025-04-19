@@ -1,4 +1,8 @@
 .watchList {
+    flex-wrap: wrap; /* optional if you want them to wrap on small screens */
+    gap: -5rem;
+    align-content: flex-start;
+
     scrollbar-color: white rgb(18, 17, 17);
     scrollbar-width:thin;
     overflow-y: auto;
@@ -6,21 +10,24 @@
     border: 3px solid purple;
     display: None;
     position: absolute;
-    width: 50vh;
-    height: 50vh;
+    width: 45vh;
+    height: 70vh;
     background-color: rgb(42, 38, 38);
     border-radius: 5px;
-    left: 15%;
-    top: 30%;
+    left: 70%;
+    top: 20%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: 0.2s;
 }
 
 .animeSection {
-    margin: 10%;
-    width: 80%;
-    height: 20%;
-    background-color: rgb(33, 31, 31, 0.7);
-    padding: 10px;
+    border: 3px solid purple;
+    opacity: 0.9;
+    margin: 5%;
+    width: 35%;
+    height: 35%;
+    background-color: rgb(33, 31, 31, 0.9);
+    padding: 5px;
     border-radius: 10px;
     cursor: pointer;
     transition: 0.2s;
@@ -31,7 +38,8 @@
 }
 
 .animeSection:hover {
-    transform: scale(1.02);
+    transform: scale(1.1);
+    filter: None;
     opacity: 1.0;
 }
 
@@ -40,10 +48,12 @@
 }
 
 .aTitle {
-    float: right;
-    font-size: 30px; 
+    filter: None;
+    padding: 5%;
+    float:right;
+    font-size: 12px; 
     color: white;
     margin: 1%;
-    background-color: rgb(33, 31, 31, 0.7);
-
+    background-color: rgb(33, 31, 31, 0.6);
+    border-radius: 1px;
 }

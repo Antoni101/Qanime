@@ -14,7 +14,7 @@ class myAnime {
 
 function openWatchlist() {
     let wl = document.querySelector(".watchList")
-    wl.style.display = "Block";
+    wl.style.display = "flex";
     document.getElementById("searchResults").style.filter = "blur(4px)";
     wl.innerHTML = "";
 
@@ -45,10 +45,11 @@ function removeAnime(anime_id) {
             watchlist.splice(i, 1);
         }
     }
-    console.log(watchlist);
+    openWatchlist();
 }
 
 function addAnime(theAnime) {
     let newAnime = new myAnime(theAnime);
     watchlist.push(newAnime);
+    openWatchlist();
 }

@@ -6,15 +6,23 @@ function closeWindow(windowName) {
     document.getElementById("searchResults").style.filter = "None";
 }
 
+setInterval(() => {
+    searchAnime();
+}, 500); // checks every 500ms
 
 
+let lastSearch = "";
 function searchAnime() {
     let searchTitle = document.getElementById("searchBox").value;
-    if (searchTitle != "") {
-        console.log("Searching for anime: ",searchTitle);
-        fetchAnime(searchTitle);
+    if (lastSearch != searchTitle) {
+        if (searchTitle != "") {
+            lastSearch = searchTitle;
+            console.log("Searching for anime: ",searchTitle);
+            document.getElementById("searchResults").style.opacity = 0.5;
+            document.getElementById("searchResults").style.filter = "blur(0.4rem)"
+            fetchAnime(searchTitle);
+        }
     }
-    else { console.log("Enter an anime name to search."); }
 }
 
 async function fetchAnime(query) {
@@ -120,6 +128,8 @@ function showResults(results) {
         }
         
     }
+    resultsArea.style.opacity = 1.0;
+    document.getElementById("searchResults").style.filter = "None";
 }
 
 

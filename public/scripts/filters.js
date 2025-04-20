@@ -19,32 +19,36 @@ async function fetchGenres() {
       return [];
     }
 }
-  
+
+let filterChange = false;
 async function filterAnime() {
-    let filterScr = document.getElementById("filterScreen");
+    let filterScr = document.querySelector('.filterScreen');
     if (filterScreen == false) {
         filterScr.style.display = "Block";
 
         if (filtersLoaded == false) {
             filterScr.innerHTML = "";
-            let possibleGenres = await fetchGenres();
 
+            let possibleGenres = await fetchGenres();
             for (let i=0; i<possibleGenres.length; i++) {
                 let genreBtn = document.createElement("button");
                 genreBtn.innerHTML = possibleGenres[i];
                 genreBtn.onclick = function() {
                     if (selectedFilters.includes(possibleGenres[i])) {
                         selectedFilters = selectedFilters.filter(g => g !== possibleGenres[i]);
-                        genreBtn.style.border = "2px solid rgb(199, 69, 69)";
-                        genreBtn.style.backgroundColor = "#0f0e0f";
+                        genreBtn.style.border = "None";
+                        genreBtn.style.backgroundColor = "rgb(27, 23, 23)";
                         console.log(selectedFilters);
                     }
                     else {
                         selectedFilters.push(possibleGenres[i]);
                         console.log(selectedFilters);
-                        genreBtn.style.border = "2px solid rgb(154, 154, 46)";
+                        genreBtn.style.border = "1px solid rgb(154, 154, 46)";
                         genreBtn.style.backgroundColor = "rgb(41, 41, 38)";
+                        
                     }
+                    searchAnime();
+                    filterChange = true;
                 }
                 filterScr.appendChild(genreBtn);
             }

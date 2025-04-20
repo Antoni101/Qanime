@@ -18,10 +18,7 @@ function openWatchlist() {
     document.getElementById("searchResults").style.filter = "blur(4px)";
     wl.innerHTML = "";
 
-    let xBtn = document.createElement("button");
-    xBtn.classList.add("xBtn");
-    xBtn.onclick = () => { closeWindow('.watchList')}
-    wl.appendChild(xBtn);
+    addXbtn(wl,".watchList");
 
     for (let i=0; i<watchlist.length; i++) {
         let aSection = document.createElement("div");

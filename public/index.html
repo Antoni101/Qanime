@@ -20,16 +20,18 @@
 
     <div class="searchSection">
         <input type="text" id="searchBox" class="lato-regular" placeholder="Search Anime">
-        <button onclick="filterAnime()" class="filterBtn lato-regular">Filter</button>
         <div id="searchResults"></div>
     </div>
 
-    <div id="filterScreen"></div>
+    <div class="filterScreen">
+        <button onclick="closeWindow('.filterScreen')" class="xBtn"></button>
+    </div>
     
-    <div id="nav">
-        <button>Login</button>
-        <button>Sign Up</button>
+    <div class="nav">
+        <button>Login | Sign Up</button>
+        <button>Options</button>
         <button onclick="openWatchlist()">Watchlist</button>
+        <button onclick="filterAnime()" class="lato-regular">Filter</button>
     </div>
 
     <div class="animeDetails">

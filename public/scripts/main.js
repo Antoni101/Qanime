@@ -10,23 +10,30 @@ setInterval(() => {
     searchAnime();
 }, 500); // checks every 500ms
 
+function addXbtn(element, windowClass) {
+    let xBtn = document.createElement("button");
+    xBtn.classList.add("xBtn");
+    xBtn.onclick = () => { closeWindow(windowClass)}
+    element.appendChild(xBtn);
+}
 
 let lastSearch = "";
 function searchAnime() {
     let searchTitle = document.getElementById("searchBox").value;
-    if (lastSearch != searchTitle) {
+    if (lastSearch != searchTitle || filterChange == true) {
         if (searchTitle != "") {
             lastSearch = searchTitle;
             console.log("Searching for anime: ",searchTitle);
             document.getElementById("searchResults").style.opacity = 0.5;
             document.getElementById("searchResults").style.filter = "blur(0.4rem)"
             fetchAnime(searchTitle);
+            filterChange = false;
         }
     }
 }
 
 async function fetchAnime(query) {
-    const res = await fetch(`https://api.jikan.moe/v4/anime?q=${query}`);
+    const res = await fetch(`/api/anime?q=${query}`);
     const data = await res.json();
     //cconsole.log(data.data); // it's in .data array
 
@@ -101,6 +108,7 @@ function checkId(id) {
 function showResults(results) {
     let resultsArea = document.getElementById("searchResults");
     resultsArea.innerHTML = "";
+
     let counter = 100;
     for (let i=0; i<results.length; i++) {
         if (results[i].rating == "Rx - Hentai" && nsfwFilter == true) {

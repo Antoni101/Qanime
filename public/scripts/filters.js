@@ -10,7 +10,16 @@ async function fetchGenres() {
       
       let genreNames = [];
       for (let i = 0; i < data.data.length; i++) {
-        genreNames.push(data.data[i].name);
+        let filterName = data.data[i].name;
+
+        if (nsfwResults == false) {
+            if (filterName != "Erotica" && filterName != "Hentai") {
+                genreNames.push(filterName);
+            }
+        }
+        else {
+            genreNames.push(filterName);
+        }
       }
   
       return genreNames;
@@ -72,7 +81,7 @@ function filterResults(oldResults) {
                 match++;
             }
         }
-        if (match > 0) {
+        if (match == selectedFilters.length) {
             newResults.push(thisAnime);
         }
     }

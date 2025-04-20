@@ -111,8 +111,14 @@ function showResults(results) {
 
     let counter = 100;
     for (let i=0; i<results.length; i++) {
-        if (results[i].rating == "Rx - Hentai" && nsfwFilter == true) {
+        if (results[i].rating == "Rx - Hentai" && nsfwResults == false) {
             console.log("Anime skipped due to rating: ",results[i].title);
+        }
+        else if (results[i].type == "Movie" && showMovies == false) {
+            console.log("Anime skipped due to type: ",results[i].title);
+        }
+        else if (results[i].type == "TV" && showTV == false) {
+            console.log("Anime skipped due to type: ",results[i].title);
         }
         else {
             let animeItem = document.createElement("div");
@@ -141,7 +147,6 @@ function showResults(results) {
 }
 
 
-let nsfwFilter = true;
 function animeCheck(title, cover, thisAnime) {
     if (thisAnime.popularity <= 150) {
         title.innerHTML += "<br><span style='color: yellow;'>Popular</span>";
@@ -155,10 +160,12 @@ function animeCheck(title, cover, thisAnime) {
     }
     else {
         title.innerHTML += "<br><span style='color: pink; font-size: 12px;'>Other/Special</span>"
-    }
+    };
 
-    if (thisAnime.rating == "R+ - Mild Nudity" || thisAnime.rating == "Rx - Hentai") {
-        cover.style.filter = "blur(0.4rem)"
+    if (blurCovers == true) {
+        if (thisAnime.rating == "R+ - Mild Nudity" || thisAnime.rating == "Rx - Hentai") {
+            cover.style.filter = "blur(0.4rem)"
+        }
     }
 }
 

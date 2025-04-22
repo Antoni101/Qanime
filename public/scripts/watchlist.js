@@ -7,13 +7,13 @@ class myAnime {
         this.dropped = false;
         this.progress = null;
         this.userScore = null;
-        this.userReviews = [];
+        this.userComments = [];
         this.info = getAnime;
     }
 }
 
 function openWatchlist() {
-    let wl = document.querySelector(".watchList")
+    let wl = document.querySelector(".watchList");
     wl.style.display = "flex";
     document.getElementById("searchResults").style.filter = "blur(4px)";
     wl.innerHTML = "";

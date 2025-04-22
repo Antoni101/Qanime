@@ -1,0 +1,20 @@
+.configMenu {
+    border: 3px  solid rgb(198, 189, 189);
+    display: None;
+    position: absolute;
+    width: 20vw;
+    height: 20vh;
+    max-width: 200px;
+    background-color: rgb(85, 88, 92);
+    border-radius: 2pxrgb(35, 36, 38);
+    left: 1vw;
+    top: 10%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.configMenu button {
+    width: 90%;
+    margin: 5%;
+    border-radius: 0;
+    border: 1px  solid rgb(198, 189, 189);
+}

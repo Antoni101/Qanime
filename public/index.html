@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="styles/lato.css">
     <link rel="stylesheet" href="styles/wl.css">
+    <link rel="stylesheet" href="styles/config.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,12 +28,30 @@
     <div class="filterScreen">
         <button onclick="closeWindow('.filterScreen')" class="xBtn"></button>
     </div>
+
+    <div class="configMenu"></div>
+
+    <div class="addScreen">
+        <button class="setBtns">Set as Completed</button>
+        <button class="setBtns">Set as Watching</button>
+        <button class="setBtns">Set as Planning</button>
+
+        <input placeholder="Rating 1-10" max="10" type="number">
+
+        <h1>Ep 1</h1>
+        <input type="range" min="1" max="100" value="1" class="slider" id="myRange">
+
+        <input placeholder="Comment" type="text">
+
+        <button>✓</button>
+        <button>✘</button>
+    </div>
     
     <div class="nav">
         <button>Login | Sign Up</button>
-        <button>Options</button>
+        <button onclick="configMenu()">Options</button>
         <button onclick="openWatchlist()">Watchlist</button>
-        <button onclick="filterAnime()" class="lato-regular">Filter</button>
+        <button onclick="openFilters()" class="lato-regular">Filter</button>
     </div>
 
     <div class="animeDetails">

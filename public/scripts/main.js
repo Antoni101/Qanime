@@ -1,14 +1,16 @@
 
 
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("searchBox").addEventListener("input", () => {
+        searchAnime();
+    });
+    filterAnime();
+});
 
 function closeWindow(windowName) {
     document.querySelector(windowName).style.display = "None";
     document.getElementById("searchResults").style.filter = "None";
 }
-
-setInterval(() => {
-    searchAnime();
-}, 500); // checks every 500ms
 
 function addXbtn(element, windowClass) {
     let xBtn = document.createElement("button");
@@ -17,56 +19,57 @@ function addXbtn(element, windowClass) {
     element.appendChild(xBtn);
 }
 
-let lastSearch = "";
+let cooldown = false;
 function searchAnime() {
     let searchTitle = document.getElementById("searchBox").value;
-    if (lastSearch != searchTitle || filterChange == true) {
-        if (searchTitle != "") {
-            lastSearch = searchTitle;
-            console.log("Searching for anime: ",searchTitle);
-            document.getElementById("searchResults").style.opacity = 0.5;
-            document.getElementById("searchResults").style.filter = "blur(0.4rem)"
-            fetchAnime(searchTitle);
-            filterChange = false;
-        }
+    if (searchTitle != "" && cooldown == false) {
+        document.getElementById("searchResults").style.opacity = 0.5;
+        document.getElementById("searchResults").style.filter = "blur(0.4rem)";
+        fetchAnime(searchTitle);
     }
 }
 
 async function fetchAnime(query) {
+    cooldown = true;
     const res = await fetch(`/api/anime?q=${query}`);
     const data = await res.json();
-    //cconsole.log(data.data); // it's in .data array
+    //console.log(data.data); 
 
     let animeResults = [];
-    for (let i=0; i<data.data.length; i++) {
-        let animeObject = new animeItem(
-            data.data[i].title, 
-            data.data[i].score,
-            data.data[i].episodes,
-            data.data[i].year,
-            data.data[i].genres,
-            data.data[i].images.jpg.image_url,
-            data.data[i].images.jpg.large_image_url,
-            data.data[i].synopsis,
-            data.data[i].type,
-            data.data[i].rating,
-            data.data[i].rank,
-            data.data[i].popularity,
-            data.data[i].mal_id
-        );
-        animeResults.push(animeObject);
-    }
-
-    animeResults.sort((a, b) => a.popularity - b.popularity);
-
-
-    if (selectedFilters.length > 0) {
-        let filteredResults = filterResults(animeResults);
-        showResults(filteredResults);
-    }
-    else {
-        showResults(animeResults);
-        console.log(animeResults);
+    try {
+        for (let i=0; i<data.data.length; i++) {
+            let animeObject = new animeItem(
+                data.data[i].title, 
+                data.data[i].score,
+                data.data[i].episodes,
+                data.data[i].year,
+                data.data[i].genres,
+                data.data[i].images.jpg.image_url,
+                data.data[i].images.jpg.large_image_url,
+                data.data[i].synopsis,
+                data.data[i].type,
+                data.data[i].rating,
+                data.data[i].rank,
+                data.data[i].popularity,
+                data.data[i].mal_id
+            );
+            animeResults.push(animeObject);
+        }
+    
+        animeResults.sort((a, b) => a.popularity - b.popularity);
+    
+    
+        if (selectedFilters.length > 0) {
+            let filteredResults = filterResults(animeResults);
+            showResults(filteredResults);
+        }
+        else {
+            showResults(animeResults);
+            //console.log(animeResults);
+        }
+    } catch (error) {
+        cooldown = false;
+        searchAnime();
     }
 }
 
@@ -111,13 +114,13 @@ function showResults(results) {
 
     let counter = 100;
     for (let i=0; i<results.length; i++) {
-        if (results[i].rating == "Rx - Hentai" && nsfwResults == false) {
+        if (results[i].rating == "Rx - Hentai" && configs[3].toggle == true) {
             console.log("Anime skipped due to rating: ",results[i].title);
         }
-        else if (results[i].type == "Movie" && showMovies == false) {
+        else if (results[i].type == "Movie" && configs[0].toggle == false) {
             console.log("Anime skipped due to type: ",results[i].title);
         }
-        else if (results[i].type == "TV" && showTV == false) {
+        else if (results[i].type == "TV" && configs[1].toggle == false) {
             console.log("Anime skipped due to type: ",results[i].title);
         }
         else {
@@ -144,13 +147,11 @@ function showResults(results) {
     }
     resultsArea.style.opacity = 1.0;
     document.getElementById("searchResults").style.filter = "None";
+    cooldown = false;
 }
 
 
 function animeCheck(title, cover, thisAnime) {
-    if (thisAnime.popularity <= 150) {
-        title.innerHTML += "<br><span style='color: yellow;'>Popular</span>";
-    }
 
     if (thisAnime.episodes > 1) {
         title.innerHTML += "<br><span style='color: cyan; font-size: 13px;'>TV - Episodes: "+thisAnime.episodes + "</span>"
@@ -162,10 +163,14 @@ function animeCheck(title, cover, thisAnime) {
         title.innerHTML += "<br><span style='color: pink; font-size: 12px;'>Other/Special</span>"
     };
 
-    if (blurCovers == true) {
+    if (configs[2].toggle == true) {
         if (thisAnime.rating == "R+ - Mild Nudity" || thisAnime.rating == "Rx - Hentai") {
             cover.style.filter = "blur(0.4rem)"
         }
+    }
+
+    if (thisAnime.popularity <= 150) {
+        title.innerHTML += "<br><span style='color: yellow;'>Popular</span>";
     }
 }
 

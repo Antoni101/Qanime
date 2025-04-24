@@ -65,13 +65,15 @@
 }
 
 .addScreen {
-    border: 5px solid rgb(60, 80, 146);
-    display: Block;
+    padding: 2%;
+    border: 5px solid rgb(36, 37, 41);
+    display: None;
     position: absolute;
     width: 35vw;
     height: 35vh;
     max-width: 450px;
-    background-color: rgb(100, 100, 135);
+    max-height: 380px;
+    background-color: rgb(52, 52, 57);
     border-radius: 5px;
     left: 40vw;
     top: 30%;
@@ -79,17 +81,25 @@
     transition: 0.2s;
 }
 
-.setBtns {
-    margin: 2.2%;
-    width: 120px;
-}
-
-.addScreen input {
-    font-family: Lato-bold;
-}
-
 .addScreen input {
     width: 80%;
     padding: 2%;
     margin: 5%;
+}
+
+.addScreen select {
+    font-size: 20px;
+    margin: 5%;
+}
+
+.addScreen button {
+    border-radius: 10%;
+    border: None;
+    margin: 2%;
+}
+
+.addScreen h1 {
+    margin: 1%;
+    font-size: 20px;
+    color: white;
 }

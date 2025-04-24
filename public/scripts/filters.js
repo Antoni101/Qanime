@@ -5,27 +5,17 @@ let filtersLoaded = false;
 
 async function fetchGenres() {
     try {
-      const res = await fetch("https://api.jikan.moe/v4/genres/anime");
-      const data = await res.json();
-      
-      let genreNames = [];
-      for (let i = 0; i < data.data.length; i++) {
+        const res = await fetch("https://api.jikan.moe/v4/genres/anime");
+        const data = await res.json();
+        
+        let genreNames = [];
+        for (let i = 0; i < data.data.length; i++) {
         let filterName = data.data[i].name;
-
-        if (configs[3].toggle == true) {
-            if (filterName != "Erotica" && filterName != "Hentai") {
-                genreNames.push(filterName);
-            }
+        genreNames.push(filterName);
         }
-        else {
-            genreNames.push(filterName);
-        }
-      }
-  
-      return genreNames;
+        return genreNames;
     } catch (err) {
-      console.error("Error fetching genres:", err);
-      return [];
+        console.error("Error fetching genres:", err);
     }
 }
 

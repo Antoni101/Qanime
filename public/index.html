@@ -21,8 +21,9 @@
 <body>
 
     <div class="searchSection">
-        <input type="text" id="searchBox" class="lato-regular" placeholder="Search Anime">
+        <input type="text" id="searchBox" class="lato-regular" placeholder="Search by Title or ID">
         <div id="searchResults"></div>
+        <button onclick="searchAnime()">🔍 </button>
     </div>
 
     <div class="filterScreen">
@@ -32,23 +33,25 @@
     <div class="configMenu"></div>
 
     <div class="addScreen">
-        <button class="setBtns">Set as Completed</button>
-        <button class="setBtns">Set as Watching</button>
-        <button class="setBtns">Set as Planning</button>
+        <select class="lato-regular" id="animeSet">
+            <option value="Completed">Set as Completed</option>
+            <option value="Watching">Set as Watching</option>
+            <option value="Planning">Set as Planning</option>
+            <option value="Dropped">Set as Dropped</option>
+        </select>
 
-        <input placeholder="Rating 1-10" max="10" type="number">
+        <input id="animeRating"  placeholder="Rating 1-10" max="10" type="number">
 
-        <h1>Ep 1</h1>
-        <input type="range" min="1" max="100" value="1" class="slider" id="myRange">
+        <h1 id="episodeNum" >Episode Progress:</h1>
+        <input id="episodeValue" type="range" min="1" max="100" value="1" class="slider" id="myRange">
 
-        <input placeholder="Comment" type="text">
+        <input id="animeComment" placeholder="Comment" type="text">
 
-        <button>✓</button>
-        <button>✘</button>
+        <button id="doneBtn">✓</button>
+        <button onclick="closeWindow('.addScreen')">✘</button>
     </div>
     
     <div class="nav">
-        <button>Login | Sign Up</button>
         <button onclick="configMenu()">Options</button>
         <button onclick="openWatchlist()">Watchlist</button>
         <button onclick="openFilters()" class="lato-regular">Filter</button>

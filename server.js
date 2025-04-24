@@ -18,6 +18,19 @@ app.get('/api/anime', async (req, res) => {
   }
 });
 
+app.get('/api/anime/:id', async (req, res) => {
+  const animeId = req.params.id;
+  try {
+    const jikanRes = await fetch(`https://api.jikan.moe/v4/anime/${animeId}`);
+    const data = await jikanRes.json();
+    res.json(data);
+  } catch (err) {
+    console.error("Failed to fetch from Jikan:", err);
+    res.status(500).json({ error: "Failed to fetch anime" });
+  }
+});
+
+
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`)

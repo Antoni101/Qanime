@@ -2,7 +2,8 @@
 let configs = [
     {name: "Show Movies", toggle: true },
     {name: "Show TV", toggle: true },
-    {name: "Safe Search", toggle: true }
+    {name: "Safe Search", toggle: true },
+    {name: "Show Others / Special", toggle: true }
 ]
 
 let showOptions = false;
@@ -53,6 +54,9 @@ function animeCheck(anime) {
         return false;
     }
     else if (anime.type == "TV" && configs[1].toggle == false) {
+        return false;
+    }
+    else if (anime.type != "TV" && anime.type != "Movie"  && configs[3].toggle == false) {
         return false;
     }
     else {

@@ -7,6 +7,8 @@ class myAnime {
         this.userScore = getrating;
         this.userComment = comment;
         this.id = info.id;
+        this.image = info.coverB;
+        this.title = info.title;
     }
 }
 
@@ -18,14 +20,16 @@ async function openWatchlist() {
     addXbtn(wl,".watchList");
 
     for (let i=0; i<watchlist.length; i++) {
-        let anime = await searchID(watchlist[i].id);
         let aSection = document.createElement("div");
         aSection.classList.add("animeSection");
-        aSection.style.backgroundImage = `url(${anime.coverB})`;
-        aSection.onclick = () => animeInfo(anime); 
+        aSection.style.backgroundImage = `url(${watchlist[i].image})`;
+        aSection.onclick = async () => {
+            let details = await searchID(watchlist[i].id);
+            animeInfo(details);
+        }
 
         let aTitle = document.createElement("h1");
-        aTitle.innerHTML = anime.title;
+        aTitle.innerHTML = watchlist[i].title;
         aTitle.classList.add("aTitle");
         aTitle.classList.add("lato-bold");
 

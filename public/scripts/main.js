@@ -15,16 +15,24 @@ function addXbtn(element, windowClass) {
     element.appendChild(xBtn);
 }
 
-
+let searchCooldown = false;
 async function searchAnime() {
-    document.getElementById("searchResults").innerHTML = "";
-    let searchValue = document.getElementById("searchBox").value;
-    let searchId = parseInt(searchValue);
-    if (Number.isInteger(searchId)) {
-        showResult(await searchID(searchId));
-    }
-    else if (searchValue != "") {
-        await searchTitle(searchValue);
+    if (searchCooldown != true) {
+        searchCooldown = true;
+        document.getElementById("searchResults").style.opacity = 0.0;
+        setTimeout(async function() {
+            document.getElementById("searchResults").innerHTML = "";
+            let searchValue = document.getElementById("searchBox").value;
+            let searchId = parseInt(searchValue);
+            if (Number.isInteger(searchId)) {
+                showResult(await searchID(searchId));
+            }
+            else if (searchValue != "") {
+                await searchTitle(searchValue);
+            }
+            searchCooldown = false;
+            document.getElementById("searchResults").style.opacity = 1.0;
+        },300);
     }
 }
 
@@ -58,10 +66,16 @@ async function searchTitle(query) {
 
         searchResults.sort((a, b) => a.popularity - b.popularity);
 
-        for (let i=0; i<searchResults.length; i++) {
-            showResult(searchResults[i]);
-        }
-        document.getElementById("searchResults").style.opacity = 1.0;
+        let index = 0;
+        let loadAnimes = setInterval(function() {
+            if (index < searchResults.length) {
+                showResult(searchResults[index]);
+                index++;
+            }
+            else {
+                clearInterval(loadAnimes);
+            }
+        },50);
     } catch (err) {
         console.error("Failed to fetch any anime by that Title:", err);
     }
@@ -106,7 +120,7 @@ function animeInfo(thisAnime) {
 function showResult(result) {
     let resultsArea = document.getElementById("searchResults");
 
-    if (animeCheck(result) != false) {
+    if (animeCheck(result) != false && filterCheck(result) != false) {
         let animeItem = document.createElement("div");
         animeItem.classList.add("animeItem");
 
@@ -133,6 +147,11 @@ function showResult(result) {
         animeItem.appendChild(title);
         animeItem.onclick = () => animeInfo(result); 
         resultsArea.appendChild(animeItem);
+
+        animeItem.style.opacity = 0.0;
+        setTimeout(function() {
+            animeItem.style.opacity = 0.9;
+        },100)
     }     
 }
 

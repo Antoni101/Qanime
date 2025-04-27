@@ -7,14 +7,14 @@
     scrollbar-width:thin;
     overflow-y: auto;
     overflow-x: hidden;
-    border: 5px solid purple;
+    border: 1.5px  solid rgb(198, 189, 189);
     display: None;
     position: absolute;
     width: 50vw;
     height: 60vh;
     max-width: 700px;
     background-color: rgb(42, 38, 38);
-    border-radius: 5px;
+    border-radius: 2px;
     right: 1vw;
     top: 30%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -26,20 +26,20 @@
 }
 
 .animeSection {
-    border: 3px solid purple;
     opacity: 0.9;
-    margin: 5%;
-    width: 35%;
-    height: 35%;
+    margin: 2.5%;
+    width: 25%;
+    height: 32%;
     background-color: rgb(33, 31, 31, 0.9);
     padding: 5px;
-    border-radius: 10px;
+    border-radius: 3px;
     cursor: pointer;
     transition: 0.2s;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     image-rendering: auto;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .animeSection:hover {
@@ -55,25 +55,28 @@
 .aTitle {
     filter: None;
     padding: 5%;
-    float:right;
-    font-size: 12px; 
+    position: relative;
+    top: 100%;
+    font-size: 13px; 
+    text-align: center;
     color: white;
     margin: 1%;
-    background-color: rgb(33, 31, 31, 0.9);
+    background-color: rgba(29, 27, 27, 0.87);
+    border: 1px solid white;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    border-radius: 1px;
+    border-radius: 5px;
 }
 
 .addScreen {
     padding: 2%;
-    border: 5px solid rgb(36, 37, 41);
+    border: 2px  solid rgb(198, 189, 189);
     display: None;
     position: absolute;
     width: 35vw;
     height: 35vh;
     max-width: 450px;
     max-height: 380px;
-    background-color: rgb(52, 52, 57);
+    background-color: rgb(27, 25, 25);
     border-radius: 5px;
     left: 40vw;
     top: 30%;
@@ -90,12 +93,14 @@
 .addScreen select {
     font-size: 20px;
     margin: 5%;
+    padding: 5px;
+    border: 2px solid white;
 }
 
 .addScreen button {
-    border-radius: 10%;
-    border: None;
-    margin: 2%;
+    border-radius: 5%;
+    border: 2px solid white;
+    background-color: rgb(32, 30, 30);
 }
 
 .addScreen h1 {

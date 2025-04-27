@@ -60,19 +60,17 @@ async function filterAnime() {
     filtersLoaded = true;
 }
 
-function filterResults(oldResults) {
-    let newResults = [];
-    for (let i=0; i<oldResults.length; i++) {
-        let match = 0;
-        let thisAnime = oldResults[i];
-        for (let j=0; j<selectedFilters.length; j++) {
-            if (thisAnime.genres.includes(selectedFilters[j])) {
-                match++;
-            }
-        }
-        if (match == selectedFilters.length) {
-            newResults.push(thisAnime);
+function filterCheck(anime) {
+    let match = 0;
+    for (let j=0; j<selectedFilters.length; j++) {
+        if (anime.genres.includes(selectedFilters[j])) {
+            match++;
         }
     }
-    return newResults;
+    if (match == selectedFilters.length) {
+        return true;
+    }
+    else {
+        return false;
+    }
 }

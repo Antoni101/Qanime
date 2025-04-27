@@ -47,7 +47,9 @@ button {
 
 .searchSection button {
     position: relative;
-    border-radius: 10%;
+    border-radius: 2px;
+    border: 1.5px  solid rgb(198, 189, 189);
+    opacity: 1.0;
     top: -30%;
     width: 57px;
     height: 57px;
@@ -72,7 +74,7 @@ button {
 .filterScreen {
     display: none;
     border-radius: 2px;
-    border: 1px  solid rgb(198, 189, 189);
+    border: 1.5px  solid rgb(198, 189, 189);
     position: absolute;
     top: 25%;
     left: 50%;
@@ -102,7 +104,6 @@ button {
     scrollbar-color: white rgb(18, 17, 17);
     scrollbar-width: thin;
     scroll-margin: -5%;
-
     position: absolute;
     overflow-y: auto;
     overflow-x: hidden;
@@ -113,7 +114,6 @@ button {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2%;
-
     transition: 0.4s;
 }
 
@@ -122,9 +122,9 @@ button {
     display: None;
     scrollbar-color: white rgb(18, 17, 17);
     scrollbar-width:thin;
-    border: 5px solid rgb(199, 91, 91);
-    border-radius: 5px;
-    overflow: auto;
+    border: 1.5px  solid rgb(198, 189, 189);
+    border-radius: 2px;
+    overflow-y: auto;
     opacity: 0.95;
     position: absolute;
     left: 1vw;
@@ -170,6 +170,7 @@ button {
     cursor: pointer;
     width: 200px;
     height: 330px;
+    transition: 0.2s;
 }
 
 .animeCover {

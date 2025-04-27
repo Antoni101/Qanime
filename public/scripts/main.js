@@ -43,7 +43,6 @@ function sortAnime(animeData) {
         animeData.episodes,
         animeData.year,
         animeData.genres,
-        animeData.images.jpg.image_url,
         animeData.images.jpg.large_image_url,
         animeData.synopsis,
         animeData.type,
@@ -94,13 +93,22 @@ async function searchID(animeID) {
 }
 
 
-function animeInfo(thisAnime) {
+async function animeInfo(thisAnime) {
     const animeDetails = document.querySelector('.animeDetails')
     animeDetails.style.display = "Block";
 
     document.getElementById("searchResults").style.filter = "blur(4px)";
-    document.getElementById("animeCard").src = thisAnime.coverB;
+    document.getElementById("animeCard").src = thisAnime.cover;
     document.getElementById("animeDesc").innerHTML = thisAnime.desc;
+    document.getElementById("animeReviews").innerHTML = "";
+    let reviews = await getReviews(thisAnime.id);
+    console.log(reviews);
+    for (let i=0; i<reviews.length; i++) {
+        const newReview = document.createElement("p");
+        newReview.classList.add("review");
+        newReview.innerHTML = reviews[i].review;
+        document.getElementById("animeReviews").appendChild(newReview);
+    }
 
     if (checkId(thisAnime.id) == true) {
         document.getElementById("addBtn").innerHTML = "Remove from Watchlist";
@@ -165,13 +173,12 @@ function checkId(id) {
 }
 
 class animeItem {
-    constructor(title, score, episodes, year, getgenres, cover, coverB, desc, type, rating, rank, popularity, id) {
+    constructor(title, score, episodes, year, getgenres, cover, desc, type, rating, rank, popularity, id) {
         this.title = title;
         this.score = score;
         this.episodes = episodes;
         this.year = year;
         this.cover = cover;
-        this.coverB = coverB;
         this.desc = desc;
         this.type = type;
         this.rating = rating;
@@ -184,3 +191,41 @@ class animeItem {
         }
     }
 }
+
+class reviewItem {
+    constructor(review, spoiler, tags, score, likes, date) {
+        this.review = review;
+        this.spoiler = spoiler;
+        this.tag = tags[0];
+        this.score = score;
+        this.likes = likes;
+        this.date = date;
+    }
+}
+
+async function getReviews(animeID) {
+    let reviews = [];
+    try {
+        const res = await fetch(`/api/anime/${animeID}/reviews`);
+        const json = await res.json();
+        for (let i=0; i<json.data.length; i++) {
+            let reviewData = json.data[i];
+            let review = new reviewItem(
+                reviewData.review,
+                reviewData.is_spoiler,
+                reviewData.tags,
+                reviewData.score,
+                reviewData.reactions.overall,
+                reviewData.date
+            )
+            reviews.push(review);
+        }
+        return reviews;
+    } catch (err) {
+        console.error("Failed to get reviews:", err);
+        return [];
+    }
+}
+
+  
+  

@@ -7,7 +7,7 @@ class myAnime {
         this.userScore = getrating;
         this.userComment = comment;
         this.id = info.id;
-        this.image = info.coverB;
+        this.image = info.cover;
         this.title = info.title;
     }
 }
@@ -43,6 +43,7 @@ function removeAnime(anime_id) {
     for (let i=0; i<watchlist.length; i++) {
         if (watchlist[i].id == anime_id) {
             watchlist.splice(i, 1);
+            openWatchlist();
         }
     }
 }

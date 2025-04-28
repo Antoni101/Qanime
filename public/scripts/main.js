@@ -105,6 +105,7 @@ async function animeInfo(thisAnime) {
     console.log(reviews);
     for (let i=0; i<reviews.length; i++) {
         const newReview = document.createElement("p");
+        const likes = document.createElement("p");
         newReview.classList.add("review");
         newReview.innerHTML = reviews[i].review;
         document.getElementById("animeReviews").appendChild(newReview);
@@ -208,6 +209,7 @@ async function getReviews(animeID) {
     try {
         const res = await fetch(`/api/anime/${animeID}/reviews`);
         const json = await res.json();
+        console.log(json.data);
         for (let i=0; i<json.data.length; i++) {
             let reviewData = json.data[i];
             let review = new reviewItem(

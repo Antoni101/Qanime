@@ -94,7 +94,7 @@ async function searchID(animeID) {
 
 
 async function animeInfo(thisAnime) {
-    const animeDetails = document.querySelector('.animeDetails')
+    const animeDetails = document.querySelector('.animeDetails');
     animeDetails.style.display = "Block";
 
     document.getElementById("searchResults").style.filter = "blur(4px)";
@@ -102,13 +102,40 @@ async function animeInfo(thisAnime) {
     document.getElementById("animeDesc").innerHTML = thisAnime.desc;
     document.getElementById("animeReviews").innerHTML = "";
     let reviews = await getReviews(thisAnime.id);
-    console.log(reviews);
+    //console.log(reviews);
     for (let i=0; i<reviews.length; i++) {
-        const newReview = document.createElement("p");
+        const userReview = document.createElement("div");
+        const reviewText = document.createElement("p");
         const likes = document.createElement("p");
-        newReview.classList.add("review");
-        newReview.innerHTML = reviews[i].review;
-        document.getElementById("animeReviews").appendChild(newReview);
+        const username = document.createElement("h1");
+        const pfp = document.createElement("img");
+
+        reviewText.innerHTML = reviews[i].review;
+        likes.innerHTML = `❤️${reviews[i].likes}`;
+        username.innerHTML = reviews[i].user;
+        pfp.src = reviews[i].pfp;
+
+        reviewText.onclick = () => { 
+            const fullReview = document.querySelector('.fullReview');
+            const fullText = document.querySelector('.fullText');
+            fullText.innerHTML = "";
+            fullReview.style.display = "Block";
+            fullText.innerHTML = reviews[i].review;
+            fullReview.appendChild(fullText);
+        }
+
+        reviewText.classList.add("reviewText");
+        pfp.classList.add("profilepic");
+        username.classList.add("username");
+        likes.classList.add("likes");
+        userReview.classList.add("reviewSection");
+
+        userReview.appendChild(pfp);
+        userReview.appendChild(username);
+        userReview.appendChild(likes);
+        userReview.appendChild(reviewText);
+
+        document.getElementById("animeReviews").appendChild(userReview);
     }
 
     if (checkId(thisAnime.id) == true) {
@@ -194,13 +221,15 @@ class animeItem {
 }
 
 class reviewItem {
-    constructor(review, spoiler, tags, score, likes, date) {
+    constructor(review, spoiler, tags, score, likes, date, user, pfp) {
         this.review = review;
         this.spoiler = spoiler;
         this.tag = tags[0];
         this.score = score;
         this.likes = likes;
         this.date = date;
+        this.user = user;
+        this.pfp = pfp;
     }
 }
 
@@ -218,7 +247,9 @@ async function getReviews(animeID) {
                 reviewData.tags,
                 reviewData.score,
                 reviewData.reactions.overall,
-                reviewData.date
+                reviewData.date,
+                reviewData.user.username,
+                reviewData.user.images.jpg.image_url
             )
             reviews.push(review);
         }

@@ -5,17 +5,23 @@
     height: 20vh;
     max-width: 200px;
     background-color: rgb(42, 38, 38);
-    border: 1.5px  solid rgb(198, 189, 189);
+    border: 3px  solid rgb(198, 189, 189);
     left: 1vw;
     top: 10%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-color: rgb(197, 84, 84) rgb(18, 17, 17);
+    scrollbar-width: thin;
+    scroll-margin: -5%;
+    padding: 10px;
 }
 
 .configMenu button {
-    width: 90%;
-    margin: 5%;
-    border-radius: 20px;
-    font-size: 12px;
-    border: 2px  solid rgb(198, 189, 189);
+    width: 85%;
+    margin: 7%;
+    border-radius: 10px;
+    font-size: 17px;
+    border: None;
     background-color: rgb(16, 16, 16);
 }

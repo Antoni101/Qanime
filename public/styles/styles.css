@@ -1,5 +1,5 @@
 body, html {
-    background-color: #1E1A1D;
+    background: linear-gradient(135deg, #343232, #1e1c1c);
     overflow: hidden;
 }
 
@@ -33,9 +33,10 @@ button {
 }
 
 .nav button {
-    border-radius: 0;
-    width: 140px;
-    border: 1px  solid rgb(198, 189, 189);
+    border-radius: 5px;
+    width: 200px;
+    font-size: 25px;
+    border: 3px  solid rgb(150, 150, 150);
 }
 
 .searchSection { /* SEARCH SECTION */
@@ -47,27 +48,29 @@ button {
 
 .searchSection button {
     position: relative;
-    border-radius: 2px;
-    border: 1.5px  solid rgb(198, 189, 189);
+    border-radius: 50%;
+    border: None;
+    background: None;
+    box-shadow: None;
+    background-color:None;
     opacity: 1.0;
     top: -30%;
-    width: 57px;
-    height: 57px;
-    padding: 10px;
-    font-size: 20px;
+    margin: 0;
+    padding: 15px;
+    font-size: 30px;
 }
 
 #searchBox {
     background-color: #0f0e0f;
     color: White;
-    border: 1px  solid rgb(198, 189, 189);
+    border: None;
     position: relative;
     top: -30%;
-    width: 400px;
-    padding: 12px;
+    width: 700px;
+    padding: 20px;
     font-size: 25px;
     outline: None;
-    border-radius: 2px;
+    border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
@@ -95,7 +98,7 @@ button {
     background-color: rgb(27, 23, 23);
     margin: 1.5%;
     padding: 5px;
-    font-size: 12px;
+    font-size: 13px;
     width: 133px;
 }
 
@@ -118,52 +121,6 @@ button {
 }
 
 
-.animeDetails {
-    display: None;
-    scrollbar-color: white rgb(18, 17, 17);
-    scrollbar-width:thin;
-    border: 1.5px  solid rgb(198, 189, 189);
-    border-radius: 2px;
-    overflow-y: auto;
-    opacity: 0.95;
-    position: absolute;
-    left: 1vw;
-    top: 30%;
-    width: 50vw;
-    height: 60vh;
-    max-width: 700px;
-    background-color: #1d1c1c;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    transition: 0.2s;
-}
-
-.animeDetails:hover {
-    opacity: 1.0;
-}
-
-#animeCard {
-    height: 30vh;
-    width: 20vw;
-    margin: 5%;
-    border-radius: 2px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    max-width: 300px;
-}
-
-#animeDesc {
-    overflow: auto;
-    color: white;
-    margin-top: -2%;
-    margin-bottom: 20%;
-    margin-left: 5%;
-    height: 38%;
-    width: 90%;
-    font-size: 18px;
-    word-spacing: 4px;
-    line-height: 1.5;
-}
-  
-
 .animeItem {
     margin: 5%;
     margin-bottom: 3vw;
@@ -179,7 +136,7 @@ button {
     width: 100%;
     opacity: 0.8;
     border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     transition: 0.3s;
 }
 
@@ -224,17 +181,4 @@ button {
     font-size: 20px;
     height: 20px;
     width: 20px;
-}
-
-.review {
-    font-size: 22px;
-    padding: 10px;
-    color: white;
-    margin: 5%;
-    margin-top: 10%;
-    width: 90%;
-    height: 150px;
-    overflow: auto;
-    word-spacing: 4px;
-    line-height: 1.5;
 }

@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="styles/lato.css">
     <link rel="stylesheet" href="styles/wl.css">
     <link rel="stylesheet" href="styles/config.css">
+    <link rel="stylesheet" href="styles/details.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,12 +22,12 @@
 <body>
 
     <div class="searchSection">
-        <input type="text" id="searchBox" class="lato-regular" placeholder="Search by Title or ID">
+        <input type="text" id="searchBox" class="lato-bold" placeholder="Search by Title or ID">
         <div id="searchResults"></div>
-        <button id="searchBtn" onclick="searchAnime()">🔍 </button>
+        <button id="searchBtn" onclick="searchAnime()">🔍</button>
     </div>
 
-    <div class="filterScreen">
+    <div class="filterScreen lato-bold">
         <button onclick="closeWindow('.filterScreen')" class="xBtn"></button>
     </div>
 
@@ -52,17 +53,24 @@
     </div>
     
     <div class="nav">
-        <button onclick="configMenu()">Options</button>
-        <button onclick="openWatchlist()">Watchlist</button>
-        <button onclick="openFilters()" class="lato-regular">Filter</button>
+        <button class="lato-bold" onclick="configMenu()">Options</button>
+        <button class="lato-bold" onclick="openWatchlist()">Watchlist</button>
+        <button class="lato-bold" onclick="openFilters()">Filter</button>
     </div>
 
     <div class="animeDetails">
         <button onclick="closeWindow('.animeDetails')" class="xBtn"></button>
         <img id="animeCard" src="">
-        <p id="animeDesc" class="lato-regular"></p>
-        <p id="animeReviews" class="lato-light"></p>
+        <hr><h2 class="lato-bold">Description:</h1>
+        <p id="animeDesc" class="lato-light"></p>
+        <hr><h2 class="lato-bold" >Reviews:</h1>
+        <div id="animeReviews" class="lato-regular"></div>
         <button id="addBtn">Add to Watchlist</button>
+    </div>
+
+    <div class="fullReview">
+        <button onclick="closeWindow('.fullReview')" class="xBtn"></button>
+        <p class="fullText lato-regular"></p>
     </div>
 
     <div class="watchList"></div>

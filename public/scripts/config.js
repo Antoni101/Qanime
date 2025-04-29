@@ -3,7 +3,7 @@ let configs = [
     {name: "Show Movies", toggle: true },
     {name: "Show TV", toggle: true },
     {name: "Safe Search", toggle: true },
-    {name: "Show Others / Special", toggle: true }
+    {name: "Show Specials", toggle: true }
 ]
 
 let showOptions = false;

@@ -1,0 +1,134 @@
+.animeDetails {
+    display: None;
+    scrollbar-color: white rgb(18, 17, 17);
+    scrollbar-width:thin;
+    border: 1.5px  solid rgb(198, 189, 189);
+    border-radius: 2px;
+    overflow-y: auto;
+    opacity: 0.95;
+    position: absolute;
+    left: 1vw;
+    top: 30%;
+    width: 50vw;
+    height: 60vh;
+    max-width: 700px;
+    background-color: #1d1c1c;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: 0.2s;
+}
+
+.animeDetails:hover {
+    opacity: 1.0;
+}
+
+.animeDetails h2 {
+    color: white;
+    text-align: center;
+    text-decoration: underline;
+    margin: 5%;
+}
+
+#animeCard {
+    height: 30vh;
+    width: 20vw;
+    margin: 5%;
+    border-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    max-width: 300px;
+}
+
+#animeDesc {
+    overflow: auto;
+    color: white;
+    margin-top: -2%;
+    margin-left: 5%;
+    height: 50%;
+    width: 90%;
+    font-size: 20px;
+    word-spacing: 4px;
+    line-height: 1.5;
+}
+
+
+/* REVIEW SECTION CSS */
+
+.reviewSection {
+    margin: 5%;
+    margin-top: 3%;
+    margin-bottom: 12%;
+    width: 90%;
+    height: 350px;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.likes {
+    color: coral;
+    font-size: 20px;
+    margin-top: -7%;
+    margin-bottom: -2%;
+}
+
+.reviewText {
+    font-size: 20px;
+    color: white;
+    word-spacing: 4px;
+    line-height: 1.5;
+    opacity: 0.9;
+    transition: 0.2s;
+}
+
+.reviewText:hover {
+    opacity: 1.0;
+    cursor: pointer;
+    transform: scale(1.005);
+}
+
+.reviewText:active {
+    transform: scale(1.0);
+}
+
+.profilepic {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    object-fit: cover; /* ADD THIS */
+    image-rendering: auto; /* Or try 'crisp-edges' */
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.username {
+    color: orange;
+    position: relative;
+    left: 15%;
+    bottom: 70px;
+    font-size: 25px;
+}
+
+.fullText {
+    font-size: 22px;
+    color: white;
+    word-spacing: 5px;
+    line-height: 2;
+    opacity: 1.0;
+    scrollbar-color: white rgb(18, 17, 17);
+    scrollbar-width:thin;
+    overflow-y: auto;
+    height: 95%;
+}
+
+.fullReview {
+    opacity: 1.0;
+    display: None;
+    padding: 30px;
+    border: 4px  solid rgb(190, 109, 109);
+    border-radius: 10px;
+    position: absolute;
+    left: 20vw;
+    top: 30%;
+    width: 50vw;
+    height: 50vh;
+    max-width: 700px;
+    background-color: #1d1c1c;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}

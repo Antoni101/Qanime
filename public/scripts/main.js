@@ -101,19 +101,45 @@ async function animeInfo(thisAnime) {
     document.getElementById("animeCard").src = thisAnime.cover;
     document.getElementById("animeDesc").innerHTML = thisAnime.desc;
     document.getElementById("animeReviews").innerHTML = "";
+
+    document.getElementById("animeG").innerHTML = "";
+    for (let i=0; i<thisAnime.genres.length; i++) {
+        document.getElementById("animeG").innerHTML += thisAnime.genres[i] + " ";
+    }
+    document.getElementById("animeR").innerHTML = thisAnime.rating;
+    document.getElementById("animeS").innerHTML = thisAnime.score;
+    document.getElementById("animeD").innerHTML = thisAnime.year;
     let reviews = await getReviews(thisAnime.id);
-    //console.log(reviews);
+    console.log(reviews);
     for (let i=0; i<reviews.length; i++) {
         const userReview = document.createElement("div");
+        const tag = document.createElement("h4");
         const reviewText = document.createElement("p");
         const likes = document.createElement("p");
         const username = document.createElement("h1");
         const pfp = document.createElement("img");
 
+        tag.innerHTML = reviews[i].score + "/10  -  " + reviews[i].tag
         reviewText.innerHTML = reviews[i].review;
-        likes.innerHTML = `❤️${reviews[i].likes}`;
+        likes.innerHTML = `♥${reviews[i].likes}`;
         username.innerHTML = reviews[i].user;
         pfp.src = reviews[i].pfp;
+
+        if (reviews[i].spoiler == true) {
+            reviewText.style.filter = "blur(4px)";
+        }
+
+        if (reviews[i].tag == "Recommended") {
+            tag.style.color = "ForestGreen";
+            tag.innerHTML += " ✓";
+        }
+        else if (reviews[i].tag == "Not Recommended") {
+            tag.style.color = "Red";
+            tag.innerHTML += " ✗";
+        } else { 
+            tag.style.color = "Grey"; 
+            tag.innerHTML += " ...";
+        }
 
         reviewText.onclick = () => { 
             const fullReview = document.querySelector('.fullReview');
@@ -124,6 +150,7 @@ async function animeInfo(thisAnime) {
             fullReview.appendChild(fullText);
         }
 
+        tag.classList.add("tag");
         reviewText.classList.add("reviewText");
         pfp.classList.add("profilepic");
         username.classList.add("username");
@@ -133,6 +160,7 @@ async function animeInfo(thisAnime) {
         userReview.appendChild(pfp);
         userReview.appendChild(username);
         userReview.appendChild(likes);
+        userReview.appendChild(tag);
         userReview.appendChild(reviewText);
 
         document.getElementById("animeReviews").appendChild(userReview);

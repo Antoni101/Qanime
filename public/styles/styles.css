@@ -27,8 +27,9 @@ button {
 
 .nav {
     position: fixed;
-    top: 12%;
+    top: 10%;
     left: 50%;
+    display: flex;
     transform: translateX(-50%);
 }
 

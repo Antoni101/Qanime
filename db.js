@@ -1,7 +1,6 @@
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('./app.db');
 
-// Clear + Save new watchlist
 function saveWatchlist(watchlistArray, callback) {
   db.run(`DELETE FROM watchlist`, [], function (err) {
     if (err) return callback(err);

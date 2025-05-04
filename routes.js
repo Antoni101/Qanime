@@ -1,9 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { saveWatchlist } = require('./db'); // ← this line is key
+const { saveWatchlist } = require('./db'); 
 const db = require('./db').db;
-
-
 
 router.get('/api/anime', async (req, res) => {
     const query = req.query.q;
@@ -61,7 +59,6 @@ router.get('/api/watchlist', (req, res) => {
       return res.status(500).json({ error: "Failed to load watchlist" });
     }
 
-    // Strip DB ID before sending
     const cleaned = rows.map(({ db_id, ...rest }) => rest);
     res.json(cleaned);
   });

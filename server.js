@@ -19,16 +19,12 @@ const sql = `
   );
 `;
 
-
 db.run(sql, (err) => {
   if (err) return console.error("Failed to create table:", err.message);
   console.log("Watchlist table created or already exists.");
 });
 
-
-
 let watchlist = [];
-
 
 app.use(express.json());
 app.use(express.static('public'))

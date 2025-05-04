@@ -22,31 +22,49 @@
 }
 
 .animeDetails h2 {
-    color: white;
+    color: orange;
     text-align: center;
-    text-decoration: underline;
     margin: 5%;
 }
 
 #animeCard {
-    height: 30vh;
-    width: 20vw;
+    width: 220px;
+    height: 320px;
     margin: 5%;
     border-radius: 2px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    max-width: 300px;
 }
 
 #animeDesc {
     overflow: auto;
     color: white;
-    margin-top: -2%;
+    margin-top: -3%;
     margin-left: 5%;
     height: 50%;
     width: 90%;
     font-size: 20px;
     word-spacing: 4px;
     line-height: 1.5;
+}
+
+.statsSection {
+    position: relative;
+    left: 0.5%;
+    top: -5%;
+    font-size: 20px;
+}
+
+.animeStats {
+    padding: 8px;
+    margin: 3%;
+    color: white;
+    width: 45%;
+}
+
+.statsValues {
+    color: yellow;
+    margin-left: 5%;
+    font-size: 17px;
 }
 
 
@@ -70,22 +88,18 @@
 }
 
 .reviewText {
-    font-size: 20px;
+    font-size: 18px;
     color: white;
     word-spacing: 4px;
     line-height: 1.5;
-    opacity: 0.9;
+    margin-top: -16%;
+    opacity: 0.7;
     transition: 0.2s;
 }
 
 .reviewText:hover {
     opacity: 1.0;
     cursor: pointer;
-    transform: scale(1.005);
-}
-
-.reviewText:active {
-    transform: scale(1.0);
 }
 
 .profilepic {
@@ -97,12 +111,20 @@
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
+.tag {
+    font-size: 30px;
+    position: relative;
+    left: 20%;
+    top: -20%;
+}
+
 .username {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     color: orange;
     position: relative;
-    left: 15%;
+    left: 85px;
     bottom: 70px;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .fullText {

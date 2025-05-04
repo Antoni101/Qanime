@@ -61,9 +61,23 @@
     <div class="animeDetails">
         <button onclick="closeWindow('.animeDetails')" class="xBtn"></button>
         <img id="animeCard" src="">
-        <hr><h2 class="lato-bold">Description:</h1>
+        <div class="statsSection">
+            <h3 class="animeStats lato-thin">Genres:</h3>
+            <h4 id="animeG" class="statsValues lato-regular"></h4>
+
+            <h3 class="animeStats lato-thin">Rating:</h3>
+            <h4 id="animeR" class="statsValues lato-regular"></h4>
+
+            <h3 class="animeStats lato-thin">Score:</h3>
+            <h4 id="animeS" class="statsValues lato-regular"></h4>
+
+            <h3 class="animeStats lato-thin">Release Date:</h3>
+            <h4 id="animeD" class="statsValues lato-regular"></h4>
+
+        </div>
+        <hr><h2 class="lato-bold">Description ↓</h1>
         <p id="animeDesc" class="lato-light"></p>
-        <hr><h2 class="lato-bold" >Reviews:</h1>
+        <hr><h2 class="lato-bold" >Reviews ↓</h1>
         <div id="animeReviews" class="lato-regular"></div>
         <button id="addBtn">Add to Watchlist</button>
     </div>

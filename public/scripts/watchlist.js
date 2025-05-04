@@ -6,9 +6,9 @@ class myAnime {
         this.progress = getprogress;
         this.userScore = getrating;
         this.userComment = comment;
-        this.id = info.id;
         this.image = info.cover;
         this.title = info.title;
+        this.id = info.id;
     }
 }
 
@@ -44,6 +44,7 @@ function removeAnime(anime_id) {
         if (watchlist[i].id == anime_id) {
             watchlist.splice(i, 1);
             openWatchlist();
+            saveWatchlist();
         }
     }
 }
@@ -60,6 +61,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 function watchDetails(theAnime) {
+    document.getElementById("animeComment").value = "";
+    document.getElementById("animeRating").value = "";
+    document.getElementById("episodeValue").value = 1;
+
     document.querySelector(".addScreen").style.display = "Block";
     let ep = document.getElementById("episodeValue");
     
@@ -89,6 +94,32 @@ function watchDetails(theAnime) {
         let newAnime = new myAnime(theAnime, animeSet, rating, comment, progress);
         watchlist.push(newAnime);
         document.getElementById("searchResults").style.filter = "None";
+        saveWatchlist();
     }
 }
+
+function saveWatchlist() {
+    // Example POST request on save
+    fetch('/api/watchlist/save', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(watchlist) // send the whole thing
+    });
+    
+}
+
+async function loadWatchlist() {
+    try {
+      const res = await fetch('/api/watchlist');
+      const watchlist = await res.json();
+      console.log(watchlist); // You now have the array ready to use
+      return watchlist;
+    } catch (err) {
+      console.error("Failed to load watchlist:", err);
+      return [];
+    }
+}
+  
 

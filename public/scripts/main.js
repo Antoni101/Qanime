@@ -1,6 +1,7 @@
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     filterAnime();
+    watchlist = await loadWatchlist();
 });
 
 function closeWindow(windowName) {
@@ -80,9 +81,9 @@ async function searchTitle(query) {
     }
 }
 
-async function searchID(animeID) {
+async function searchID(id) {
     try {
-        const res = await fetch(`/api/anime/${animeID}`);
+        const res = await fetch(`/api/anime/${id}`);
         const json = await res.json();
         let animeData = sortAnime(json.data);
         return animeData;
@@ -233,12 +234,12 @@ class reviewItem {
     }
 }
 
-async function getReviews(animeID) {
+async function getReviews(id) {
     let reviews = [];
     try {
-        const res = await fetch(`/api/anime/${animeID}/reviews`);
+        const res = await fetch(`/api/anime/${id}/reviews`);
         const json = await res.json();
-        console.log(json.data);
+        //console.log(json.data);
         for (let i=0; i<json.data.length; i++) {
             let reviewData = json.data[i];
             let review = new reviewItem(

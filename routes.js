@@ -1,5 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const { saveWatchlist } = require('./db'); // ← this line is key
+const db = require('./db').db;
+
+
 
 router.get('/api/anime', async (req, res) => {
     const query = req.query.q;
@@ -36,6 +40,32 @@ router.get('/api/anime/:id/reviews', async (req, res) => {
       res.status(500).json({ error: "Failed to fetch anime reviews" });
     }
 });
-  
+
+router.post('/api/watchlist/save', (req, res) => {
+  const newWatchlist = req.body;
+
+  saveWatchlist(newWatchlist, (err) => {
+    if (err) {
+      console.error("DB save failed:", err);
+      return res.status(500).json({ error: "Failed to save watchlist" });
+    }
+    res.json({ success: true });
+  });
+});
+
+router.get('/api/watchlist', (req, res) => {
+  const sql = `SELECT * FROM watchlist`;
+  db.all(sql, [], (err, rows) => {
+    if (err) {
+      console.error("Failed to fetch watchlist:", err);
+      return res.status(500).json({ error: "Failed to load watchlist" });
+    }
+
+    // Strip DB ID before sending
+    const cleaned = rows.map(({ db_id, ...rest }) => rest);
+    res.json(cleaned);
+  });
+});
+
 
 module.exports = router;

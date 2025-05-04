@@ -19,8 +19,11 @@ Features
 
 Setup Instructions
 - git clone https://github.com/Antoni101/Qanime
+- cd Qanime
 - npm install
 - node server.js
+
+Now enter this link on any browser url
 - http://localhost:8888
 
 Credits

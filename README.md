@@ -8,11 +8,11 @@ Qanime is a lightweight, responsive anime watchlist web app built using HTML, CS
 Users can search anime by title or ID, view details and reviews, filter by genre/type, and manage their personalized watchlist with ratings, progress tracking, and comments.
 
 Features
-- Search by Title or ID (live with loading animation)
+- Search by Title or ID 
 - Detailed View with cover, description, and top reviews
 - Watchlist stored in SQLite database
 - Track Progress, Rate, and Comment per anime
-- Instant Save (adds to DB as soon as user adds)
+- Instant Save (adds to DB as soon as user adds to watchlist)
 - Filter by Genre, Type, or Rating
 - Config Menu for toggling safe search, movies, TV, and specials
 - Fully styled with CSS and responsive layout
